@@ -41,8 +41,6 @@ export function Orders() {
     const filteredOrders = data.filter((order) => {
       return order.items.some((item) => item.id === advertisementId)
     })
-    console.log(data)
-    console.log(filteredOrders)
     setSelectedStatus({})
     setUrl('')
     setOrdersByAdvertisements(filteredOrders)

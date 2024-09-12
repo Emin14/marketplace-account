@@ -1,11 +1,10 @@
 import styles from './pagination.module.css'
 
 export function Pagination({ currentPage, totalPages, onPageChange }) {
+  
   const totalPagesArray = Array(totalPages)
     .fill()
     .map((_, i) => i + 1)
-
-  console.log
 
   return (
     <div className={styles.pagination}>

@@ -1,8 +1,50 @@
-# React + Vite
+<h1 align="center">Marketplace-account</h1>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description
 
-Currently, two official plugins are available:
+Личный кабинет продавца на маркетплейсе, в котором есть возможность управлять своими объявлениями и заказами
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Preview
+
+<h5>Screenshot 1:</h5>
+
+![preview](https://github.com/user-attachments/assets/bca6f5d7-4c50-4eb2-9c8a-8c4f4715d444)
+
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/Emin14/marketplace-account.git
+```
+
+Go to the project directory
+
+```bash
+  cd marketplace-account
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start application using concurrently
+
+```bash
+  npm run dev
+```
+
+
+## Comments
+
+- Когда товаров меньше 2 страниц, сделал логику что видна одна страница в pagination. По желанию можно и убрать отображение страниц если товаров всего на 1 страницу.
+
+- новая версия JSON Server не поддерживает _like, то есть не ищет вхождение слова. Был вариант использовать старую версию JSON Server, но я думаю это бы не приветствовалось или как вариант можно было получить все объявления, а затем локально искать среди них по названию, но и это наверное некий отход от полного использования JSON Server, поэтому пришлось оставить только полный поиск по названию(регистр имеет значение) на JSON Server.
+
+- В задании при создании нового объявления картинка должна быть текстовом поле для ввода URL, чуть расширил этот пункт, решив что пути можно прописать в отдельном файле, а в добавлении или редактировании объявления уже выбирать из доступных картинок. Если моя небольшая доработка лишняя, могу легко изменить до прежнего состояния когда надо прописывать URL какртинки.
+
+- При фильтрации заказов по статусу была идея реализовать фильтрацию выбором множеств статусов заказа, но как оказалось JSON Server поддерживает поиск только по одному значению свойства, поэтому checkbox у меня поддерживает выбор только одного статуса, был конечный выбор получать все заказы и фильтровать локально, но мне почему то кажется что не это хотят проверить у кандидата, а умение получать из сервера конкретные нужные данные. 
+
+- Была попытка реализовать сохранение в sessionStorage, но в моем случае при использовании множества состояний и их перезаписи данными из sessionStorage это приводило к множеству перерендеров, можно конечно было бы отрефакторить, но время поджимало, а оставлять код который возможно где то содержал бы ошибку не очень хотелось.

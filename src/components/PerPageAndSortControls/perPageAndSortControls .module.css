@@ -1,0 +1,71 @@
+.selectWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+}
+
+.selectLabel {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+}
+
+.selectContainer {
+  position: relative;
+  display: inline-block;
+}
+
+.styledSelect {
+  appearance: none;
+  background-color: #ffffff;
+  border: 1px solid #7c7c7c;
+  border-radius: 30px;
+  padding: 2px 4px;
+  font-size: 14px;
+  color: #222222;
+  cursor: pointer;
+  font-weight: 500;
+  width: 100px;
+  text-align: center;
+}
+
+.styledSelect:focus {
+  outline: none;
+}
+
+.selectContainer::after {
+  content: '▼';
+  font-size: 12px;
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #7c7c7c;
+}
+
+.styledSelect:hover + .selectContainer::after {
+  color: #ffffff;
+}
+
+@media (max-width: 1199.98px) {
+  .selectWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 4px;
+  }
+
+  .selectLabel {
+    font-size: 14px;
+    font-weight: 400;
+    width: max-content;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .selectLabel {
+    display: none;
+  }
+}

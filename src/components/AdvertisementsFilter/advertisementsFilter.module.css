@@ -1,0 +1,110 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  background-color: #f7f7f7;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.label {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.inputWrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
+.input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  font-size: 14px;
+}
+
+.clearButton {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: #949494;
+}
+
+.clearButton:hover {
+  color: #ff7875;
+}
+
+.filterContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.filterBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.buttonsContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.filterButton,
+.resetButton {
+  padding: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.1s;
+}
+
+.filterButton:active,
+.resetButton:active {
+  transform: scale(0.95);
+}
+
+.filterButton {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+.resetButton {
+  background-color: #a3a3a3;
+  color: #fcfcfc;
+  border-radius: 5px;
+}
+
+.filterButton:hover,
+.resetButton:hover {
+  opacity: 0.9;
+  transition: 0.1s;
+}
+
+.activeReset {
+  background-color: #e35858;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+  .buttonsContainer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0;
+    gap: 10px;
+  }
+}

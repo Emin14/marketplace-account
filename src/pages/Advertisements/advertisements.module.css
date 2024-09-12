@@ -1,0 +1,111 @@
+.wrapper {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+}
+
+.filter {
+  max-width: 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.content {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.pageButton {
+  padding: 10px;
+  background-color: #1890ff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pageButton:hover {
+  background-color: #40a9ff;
+}
+
+.activePage {
+  background-color: #40a9ff;
+  font-weight: bold;
+}
+
+.selectWrapper {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.searchInput {
+  padding: 10px;
+  width: 200px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.advertisementCards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  width: 100%;
+  justify-items: center;
+}
+
+@media (max-width: 768px) {
+  .advertisementCards {
+    grid-template-columns: 1fr;
+  }
+}
+
+.contentHeader {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 40px;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.addAdButton {
+  background-color: #00aaff;
+  padding: 10px;
+  color: white;
+  font-weight: 500;
+  border-radius: 10px;
+}
+
+.addAdButton:hover {
+  background-color: #0187ca;
+}
+
+@media (max-width: 1199.98px) {
+  .contentHeader {
+    font-size: 14px;
+    padding: 10px;
+  }
+  .addAdButton {
+    padding: 8px 6px;
+  }
+  .selectLabel {
+    font-size: 14px;
+    font-weight: 400;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .addAdButton {
+    line-height: 1;
+  }
+}

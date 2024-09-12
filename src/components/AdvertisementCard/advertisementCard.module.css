@@ -1,0 +1,83 @@
+.advertisementCard {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 14px 20px;
+  border: 1px solid #e0e0e0;
+  background-color: #fff;
+  text-align: center;
+  border-radius: 8px;
+  font-size: 16px;
+  gap: 20px;
+  max-width: 260px;
+  overflow: hidden;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  gap: 10px;
+}
+
+.content img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.ordersButton {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px;
+  border-radius: 4px;
+  margin-top: auto;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.ordersButton.enabled:hover {
+  opacity: 0.9;
+}
+
+.ordersButton.disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.stats {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.icon {
+  font-size: 26px;
+  color: #4a90e2;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #07abfc;
+}
+
+.price {
+  font-weight: 500;
+  color: #949494;
+  height: 24px;
+  border-radius: 10px;
+}
+
+@media (max-width: 991.98px) {
+  .advertisementCard {
+    padding: 14px;
+  }
+}

@@ -15,12 +15,16 @@ export const useGetData = (
   const [error, setError] = useState(null)
 
   useEffect(() => {
+    const controller = new AbortController()
+    const signal = controller.signal
+
     const fetchData = async () => {
       setLoading(true)
       setError(null)
       try {
         const response = await fetch(
           `${API_BASE_URL}/${category}?_page=${currentPage}&_per_page=${adsPerPage}&_sort=${sort}${filter}`,
+          {signal}
         )
         if (!response.ok) {
           throw new Error('Ошибка при загрузке данных')
@@ -37,6 +41,9 @@ export const useGetData = (
     }
 
     fetchData()
+
+    return () => controller.abort()
+
   }, [category, currentPage, adsPerPage, sort, filter, dependence])
 
   return { data, pages, loading, error }

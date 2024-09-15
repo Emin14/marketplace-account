@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import classNames from 'classnames'
-import { orderStatus } from './orderStatus'
 import { formatDate } from '../../utils/formatDate'
 import styles from './orderCard.module.css'
+import { Order } from '../../types'
+import { getOrderStatusText } from '../../utils/getOrderStatusText'
 
-export function OrderCard({ order }) {
+export function OrderCard({ order }: { order: Order }) {
   const [showItems, setShowItems] = useState(false)
   const [showClue, setShowClue] = useState(false)
   const navigate = useNavigate()
@@ -21,7 +22,7 @@ export function OrderCard({ order }) {
     [styles.clueVisible]: showClue && !notReceived,
   })
 
-  const handleItemClick = (itemId) => {
+  const handleItemClick = (itemId: string) => {
     navigate(`/advertisements/${itemId}`)
   }
 
@@ -54,7 +55,7 @@ export function OrderCard({ order }) {
       </p>
       <p>
         <span>Статус: </span>
-        <span>{orderStatus[order.status]}</span>
+        <span>{getOrderStatusText(order.status)}</span>
       </p>
       <p>
         <span>Сумма заказа: </span>

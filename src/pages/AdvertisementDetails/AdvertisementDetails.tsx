@@ -11,14 +11,20 @@ import { useGetOneAddvertisement } from '../../hooks/useGetOneAddvertisement'
 export function AdvertisementDetails() {
   const { id } = useParams()
   const navigate = useNavigate()
-  const { advertisement, loading, error } = useGetOneAddvertisement(id)
+
+  const { advertisement, loading, error } = useGetOneAddvertisement(id!)
 
   const { editAdvertisement, response } = useEditAdvertisement()
 
   let data = response || advertisement
 
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const [formData, setFormData] = useState({})
+  const [formData, setFormData] = useState({
+    name: '',
+    price: 0,
+    description: '',
+    imageUrl: '',
+  })
 
   useEffect(() => {
     if (!data) {
@@ -27,8 +33,8 @@ export function AdvertisementDetails() {
     setFormData({
       name: data.name,
       price: data.price,
-      description: data.description,
-      imageUrl: data.imageUrl,
+      description: data.description || '',
+      imageUrl: data.imageUrl || '',
     })
   }, [data])
 
@@ -82,7 +88,7 @@ export function AdvertisementDetails() {
         <AddAdvertisementModal
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
-          onAdd={editAdvertisement}
+          onAdd={(inputsValue) => editAdvertisement(inputsValue, id!)}
           imagesList={imagesList}
           isEditing={true}
           inputsValue={formData}

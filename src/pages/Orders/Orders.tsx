@@ -9,27 +9,30 @@ import {
 } from '../../components'
 import { useGetData } from '../../hooks/useGetData'
 import styles from './orders.module.css'
+import { Order } from '../../types'
 
 export function Orders() {
   const location = useLocation()
   const [sort, setSort] = useState('id')
   const [currentPage, setCurrentPage] = useState(1)
   const [url, setUrl] = useState('')
-  const [ordersByAdvertisements, setOrdersByAdvertisements] = useState(null)
+  const [ordersByAdvertisements, setOrdersByAdvertisements] = useState<
+    Order[] | null
+  >(null)
   const [ordersByAdvertisementsPages, setOrdersByAdvertisementsPages] =
-    useState(null)
+    useState(0)
   const [adsPerPage, setAdsPerPage] = useState(20)
 
   const {
     data,
-    pages: { pages },
+    pages: { totalPages },
     loading,
     error,
-  } = useGetData('orders', currentPage, adsPerPage, sort, url)
+  } = useGetData<Order>('orders', currentPage, adsPerPage, sort, url)
   const [selectedStatus, setSelectedStatus] = useState({})
 
-  let orders = ordersByAdvertisements ?? data
-  const ordersPage = ordersByAdvertisementsPages ?? pages
+  let orders = ordersByAdvertisements || data
+  const ordersPage = ordersByAdvertisementsPages || totalPages
 
   const advertisementId = location.state?.advertisementId
 
@@ -54,7 +57,7 @@ export function Orders() {
         <OrdersFilter
           setUrl={setUrl}
           setOrdersByAdvertisements={setOrdersByAdvertisements}
-          setOrdersByAdvertisementsPages={setOrdersByAdvertisements}
+          setOrdersByAdvertisementsPages={setOrdersByAdvertisementsPages}
           selectedStatus={selectedStatus}
           setSelectedStatus={setSelectedStatus}
         />
@@ -76,9 +79,7 @@ export function Orders() {
           </div>
         )}
         <div className={styles.orders}>
-          {orders?.map((order) => (
-            <OrderCard key={order.id} order={order} />
-          ))}
+          {orders?.map((order) => <OrderCard key={order.id} order={order} />)}
         </div>
 
         {!orders.length && !error ? (

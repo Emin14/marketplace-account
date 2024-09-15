@@ -1,15 +1,26 @@
 import styles from './perPageAndSortControls .module.css'
 
-export function PerPageAndSortControls({
+type PerPageAndSortControlsProps<T> = {
+  elements: Partial<{
+    [key in keyof T]: string
+  }>
+  adsPerPage: number
+  setAdsPerPage: React.Dispatch<React.SetStateAction<number>>
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>
+  sort: string
+  setSort: React.Dispatch<React.SetStateAction<string>>
+}
+
+export function PerPageAndSortControls<T>({
   elements,
   adsPerPage,
   setAdsPerPage,
   setCurrentPage,
   sort,
   setSort,
-}) {
-  const handAdsPerPage = (e) => {
-    setAdsPerPage(e.target.value)
+}: PerPageAndSortControlsProps<T>) {
+  const handAdsPerPage = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setAdsPerPage(+e.target.value)
     setCurrentPage(1)
   }
 
@@ -46,7 +57,7 @@ export function PerPageAndSortControls({
           >
             {Object.keys(elements).map((key) => (
               <option key={key} value={key}>
-                {elements[key]}
+                {elements[key as keyof T]}
               </option>
             ))}
           </select>

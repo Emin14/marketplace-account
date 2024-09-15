@@ -10,6 +10,7 @@ import {
   Spinner,
   PerPageAndSortControls,
 } from '../../components'
+import { Advertisement, Order } from '../../types'
 import styles from './advertisements.module.css'
 
 export function Advertisements() {
@@ -20,17 +21,24 @@ export function Advertisements() {
   const [sort, setSort] = useState('id')
   const { addAdvertisement, response } = usePostAdvertisement()
   const {
-    data: advertisements,
-    pages: { pages },
+    data: advertisements = [],
+    pages: { totalPages },
     loading,
     error,
-  } = useGetData('advertisements', currentPage, adsPerPage, sort, url, response)
+  } = useGetData<Advertisement>(
+    'advertisements',
+    currentPage,
+    adsPerPage,
+    sort,
+    url,
+    response,
+  )
 
-  const { data: orders } = useGetData('orders')
+  const { data: orders } = useGetData<Order>('orders', 1)
 
   const [newPost, setNewPost] = useState({
     name: '',
-    price: '',
+    price: 0,
     description: '',
     imageUrl: '',
   })
@@ -47,7 +55,12 @@ export function Advertisements() {
   })
 
   useEffect(() => {
-    setNewPost({})
+    setNewPost({
+      name: '',
+      price: 0,
+      description: '',
+      imageUrl: '',
+    })
   }, [response])
 
   return (
@@ -92,7 +105,7 @@ export function Advertisements() {
               orders={orders}
             />
           ))}
-          {!advertisements.length && !error ? (
+          {!advertisements?.length && !error ? (
             <p>Нет объявлений по заданным критериям</p>
           ) : (
             ''
@@ -101,7 +114,7 @@ export function Advertisements() {
 
         <Pagination
           currentPage={currentPage}
-          totalPages={pages}
+          totalPages={totalPages}
           onPageChange={setCurrentPage}
         />
       </div>

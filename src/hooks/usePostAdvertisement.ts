@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import { API_BASE_URL } from '../config'
+import { Advertisement, InputsValue } from '../types'
 
 export const usePostAdvertisement = () => {
   const [errorMessage, setErrorMessage] = useState('')
-  const [response, setResponse] = useState(null)
+  const [response, setResponse] = useState<Advertisement | null>(null)
 
-  const addAdvertisement = async (post) => {
+  const addAdvertisement = async (post: InputsValue): Promise<void> => {
     try {
       const body = {
         ...post,

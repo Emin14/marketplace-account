@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import { API_BASE_URL } from '../config'
+import { InputsValue } from '../types'
 
 export const useEditAdvertisement = () => {
   const [errorMessage, setErrorMessage] = useState('')
   const [response, setResponse] = useState(null)
 
-  const editAdvertisement = async (body, id) => {
+  const editAdvertisement = async (body: InputsValue, id: string) => {
     try {
       const response = await fetch(`${API_BASE_URL}/advertisements/${id}`, {
         method: 'PATCH',
@@ -24,7 +25,11 @@ export const useEditAdvertisement = () => {
       setErrorMessage('')
     } catch (error) {
       console.error('Ошибка сохранения:', error)
-      setErrorMessage('Не удалось сохранить изменения. Попробуйте снова.')
+      if (error instanceof Error) {
+        setErrorMessage(error.message)
+      } else {
+        setErrorMessage('Не удалось сохранить изменения. Попробуйте снова.')
+      }
     }
   }
 

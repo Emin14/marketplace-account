@@ -1,8 +1,10 @@
-export function filterConverter(obj) {
+import { Filter } from '../types'
+
+export function filterConverter(obj: Filter) {
   const result = []
 
   for (let element of Object.keys(obj)) {
-    if (!obj[element]) {
+    if (!obj[element as keyof Filter]) {
       continue
     }
 

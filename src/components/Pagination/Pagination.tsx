@@ -1,9 +1,18 @@
 import styles from './pagination.module.css'
 
-export function Pagination({ currentPage, totalPages, onPageChange }) {
-  
+type PaginationProps = {
+  currentPage: number
+  totalPages: number
+  onPageChange: React.Dispatch<React.SetStateAction<number>>
+}
+
+export function Pagination({
+  currentPage,
+  totalPages,
+  onPageChange,
+}: PaginationProps) {
   const totalPagesArray = Array(totalPages)
-    .fill()
+    .fill(null)
     .map((_, i) => i + 1)
 
   return (

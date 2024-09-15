@@ -1,21 +1,34 @@
 import classNames from 'classnames'
 import { filterConverter } from '../../utils/filterConverter'
 import styles from './advertisementsFilter.module.css'
+import { Filter } from '../../types'
 
-export function AdvertisementsFilter({ setUrl, filter, setFilter }) {
-  const inputFilled = Object.keys(filter).some((item) => filter[item])
+type AdvertisementsFilterProps = {
+  setUrl: React.Dispatch<React.SetStateAction<string>>
+  filter: Filter
+  setFilter: React.Dispatch<React.SetStateAction<Filter>>
+}
+
+export function AdvertisementsFilter({
+  setUrl,
+  filter,
+  setFilter,
+}: AdvertisementsFilterProps) {
+  const inputFilled = Object.keys(filter).some(
+    (item) => filter[item as keyof Filter],
+  )
 
   const resetButton = classNames(styles.resetButton, {
     [styles.activeReset]: inputFilled,
   })
 
-  const handleFilter = (event) => {
-    event.preventDefault()
+  const handleFilter = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
     const filtersUrl = filterConverter(filter)
     setUrl(filtersUrl)
   }
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target
     setFilter((prevFilter) => ({
       ...prevFilter,
@@ -36,7 +49,7 @@ export function AdvertisementsFilter({ setUrl, filter, setFilter }) {
     })
   }
 
-  const clearInput = (id) => {
+  const clearInput = (id: keyof Filter) => {
     const newFilter = { ...filter }
     newFilter[id] = ''
     setFilter(newFilter)

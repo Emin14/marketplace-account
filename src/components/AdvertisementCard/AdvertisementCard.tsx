@@ -1,9 +1,18 @@
 import { useNavigate } from 'react-router-dom'
 import classNames from 'classnames'
 import { AiOutlineEye, AiOutlineHeart } from 'react-icons/ai'
+import { Advertisement, Order } from '../../types'
 import styles from './advertisementCard.module.css'
 
-export function AdvertisementCard({ advertisement, orders }) {
+type AdvertisementCardProps = {
+  advertisement: Advertisement
+  orders: Order[] | null
+}
+
+export function AdvertisementCard({
+  advertisement,
+  orders,
+}: AdvertisementCardProps) {
   const navigate = useNavigate()
 
   const handleOrdersClick = () => {
@@ -46,7 +55,7 @@ export function AdvertisementCard({ advertisement, orders }) {
       </div>
       <button
         className={ordersButton}
-        onClick={isProductInOrders ? handleOrdersClick : null}
+        onClick={isProductInOrders ? handleOrdersClick : undefined}
       >
         Заказы
       </button>

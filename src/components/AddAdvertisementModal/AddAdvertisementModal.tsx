@@ -1,5 +1,25 @@
-import { useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 import styles from './AddAdvertisementModal.module.css'
+import { InputsValue } from '../../types'
+
+type InputsValueModal = InputsValue & {
+  name: string
+  price: number
+  description: string
+  imageUrl: string
+}
+
+interface AddAdvertisementModalProps {
+  isOpen: boolean
+  onClose: () => void
+  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>
+  onAdd: (inputsValue: InputsValueModal, id?: string) => Promise<void> | void
+  imagesList: string[]
+  isEditing?: boolean
+  inputsValue: InputsValueModal
+  setInputsValue: React.Dispatch<React.SetStateAction<InputsValueModal>>
+  id?: string
+}
 
 export function AddAdvertisementModal({
   isOpen,
@@ -11,7 +31,7 @@ export function AddAdvertisementModal({
   inputsValue,
   setInputsValue,
   id,
-}) {
+}: AddAdvertisementModalProps) {
   const [errorMessage, setErrorMessage] = useState('')
 
   function handleClick() {
@@ -24,14 +44,17 @@ export function AddAdvertisementModal({
     setErrorMessage('')
   }
 
-  const handleChange = (e) => {
-    let { name, value } = e.target
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
+  ) => {
+    const { name, value } = e.target
+    let newValue: string | number = value
     if (name === 'price') {
-      value = parseFloat(value)
+      newValue = parseFloat(value)
     }
     setInputsValue((prevInputsValue) => ({
       ...prevInputsValue,
-      [name]: value,
+      [name]: newValue,
     }))
   }
 

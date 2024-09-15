@@ -1,10 +1,19 @@
 import { useState, useEffect } from 'react'
 import { API_BASE_URL } from '../config'
+import { Advertisement } from '../types'
 
-export function useGetOneAddvertisement(id) {
-  const [advertisement, setAdvertisement] = useState([])
+type UseGetOneAdvertisementResult = {
+  advertisement: Advertisement | null
+  loading: boolean
+  error: string
+}
+
+export function useGetOneAddvertisement(
+  id: string,
+): UseGetOneAdvertisementResult {
+  const [advertisement, setAdvertisement] = useState(null)
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
+  const [error, setError] = useState('')
 
   useEffect(() => {
     const fetchOneAdvertisement = async () => {
@@ -16,7 +25,11 @@ export function useGetOneAddvertisement(id) {
         const data = await response.json()
         setAdvertisement(data)
       } catch (err) {
-        setError(err.message)
+        if (err instanceof Error) {
+          setError(err.message)
+        } else {
+          setError('Произошла неизвестная ошибка')
+        }
       } finally {
         setLoading(false)
       }

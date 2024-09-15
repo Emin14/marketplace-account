@@ -2,9 +2,9 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import classNames from 'classnames'
 import { formatDate } from '../../utils/formatDate'
-import styles from './orderCard.module.css'
 import { Order } from '../../types'
 import { getOrderStatusText } from '../../utils/getOrderStatusText'
+import styles from './orderCard.module.css'
 
 export function OrderCard({ order }: { order: Order }) {
   const [showItems, setShowItems] = useState(false)

@@ -15,7 +15,7 @@ export default [
       globals: globals.browser,
       parser: tsParser,
       parserOptions: {
-        project: './tsconfig.json', // убедитесь, что путь к tsconfig.json правильный
+        project: './tsconfig.json',
         sourceType: 'module',
         ecmaFeatures: { jsx: true },
       },
@@ -39,9 +39,9 @@ export default [
         { allowConstantExport: true },
       ],
       'react/prop-types': 'off',
-      'no-unused-vars': 'off', // Отключите стандартное правило для JS
-      '@typescript-eslint/no-unused-vars': ['error'], // Включите правило для TS
-      'no-undef': 'off', // Отключаем правило no-undef
+      'no-unused-vars': 'off',
+      '@typescript-eslint/no-unused-vars': ['error'],
+      'no-undef': 'off',
     },
   },
 ]

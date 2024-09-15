@@ -8,8 +8,8 @@ import {
   PerPageAndSortControls,
 } from '../../components'
 import { useGetData } from '../../hooks/useGetData'
-import styles from './orders.module.css'
 import { Order } from '../../types'
+import styles from './orders.module.css'
 
 export function Orders() {
   const location = useLocation()

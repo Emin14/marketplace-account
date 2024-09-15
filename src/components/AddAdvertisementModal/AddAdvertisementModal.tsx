@@ -1,6 +1,6 @@
 import { ChangeEvent, useState } from 'react'
-import styles from './AddAdvertisementModal.module.css'
 import { InputsValue } from '../../types'
+import styles from './AddAdvertisementModal.module.css'
 
 type InputsValueModal = InputsValue & {
   name: string

@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import { filterConverter } from '../../utils/filterConverter'
-import styles from './advertisementsFilter.module.css'
 import { Filter } from '../../types'
+import styles from './advertisementsFilter.module.css'
 
 type AdvertisementsFilterProps = {
   setUrl: React.Dispatch<React.SetStateAction<string>>

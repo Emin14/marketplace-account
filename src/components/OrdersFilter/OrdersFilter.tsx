@@ -1,9 +1,8 @@
 import classNames from 'classnames'
 import { useNavigate } from 'react-router-dom'
-// import { orderStatus } from '../../assets/orderStatus'
 import { ordersFilterConverter } from '../../utils/ordersFilterConverter'
-import styles from './ordersFilter.module.css'
 import { Order, OrderStatus, OrderStatusKeys } from '../../types'
+import styles from './ordersFilter.module.css'
 
 type OrdersFilterProps = {
   setUrl: React.Dispatch<React.SetStateAction<string>>

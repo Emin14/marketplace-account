@@ -51,7 +51,6 @@ export function useGetData<T>(
         if (err instanceof Error) {
           setError(err.message)
         } else {
-          // err имеет тип unknown
           console.error('Произошла неизвестная ошибка')
         }
       } finally {
